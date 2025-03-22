@@ -9,8 +9,8 @@
 <body>
     <header class="header">
         <div class="header__wrapper wrapper">
-            <img src="logo.png" alt="Логотип" class="header__logo">
-            <h1 class="header__title">Домашняя работа: Hello, World!</h1>
+            <img src="/PHP/media/logo.png" alt="Логотип" class="header__logo">
+            <h1 class="header__title">Hello, World!</h1>
         </div>
     </header>
     <main class="main">
