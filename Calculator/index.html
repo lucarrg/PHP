@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <main class="main__wrapper">
+        <div class="calculator">
+            <input type="text" class="calculator__display" id="display" disabled>
+            <div class="calculator__buttons-block">
+                <button class="calculator__button but1" onclick="appendToDisplay('7')">7</button>
+                <button class="calculator__button but2" onclick="appendToDisplay('8')">8</button>
+                <button class="calculator__button but3" onclick="appendToDisplay('9')">9</button>
+                <button class="calculator__button but4" onclick="appendToDisplay('/')">/</button>
+                <button class="calculator__button but5" onclick="appendToDisplay('4')">4</button>
+                <button class="calculator__button but6" onclick="appendToDisplay('5')">5</button>
+                <button class="calculator__button but7" onclick="appendToDisplay('6')">6</button>
+                <button class="calculator__button but8" onclick="appendToDisplay('*')">*</button>
+                <button class="calculator__button but9" onclick="appendToDisplay('1')">1</button>
+                <button class="calculator__button but10" onclick="appendToDisplay('2')">2</button>
+                <button class="calculator__button but11" onclick="appendToDisplay('3')">3</button>
+                <button class="calculator__button but12" onclick="appendToDisplay('-')">-</button>
+                <button class="calculator__button but13" onclick="appendToDisplay('&#40;')">&#40;</button>
+                <button class="calculator__button but14" onclick="appendToDisplay('0')">0</button>
+                <button class="calculator__button but15" onclick="appendToDisplay('&#41;')">&#41;</button>
+                <button class="calculator__button but16" onclick="appendToDisplay('+')">+</button>
+                <button class="calculator__button but17" onclick="clearDisplay()">DELETE</button>
+                <button class="calculator__button but18" onclick="calculate()">=</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+    
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+    
+        function calculate() {
+            const expression = document.getElementById('display').value;
+            fetch('calculator.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'expression=' + encodeURIComponent(expression)
+            })
+            .then(response => response.text())
+            .then(result => {
+                document.getElementById('display').value = result;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
