@@ -1,36 +1,28 @@
 <?php
 
-namespace MyProject\Controllers;                                                //пространство имён, необходимо для избежания конфликта имён
+namespace MyProject\Controllers;
 
 use MyProject\View\View;
+use MyProject\Models\Articles\Article;
 
 class MainController
 {
-    private $view;
-
+    /** @var View */
+    protected $view;
+    
     public function __construct()
     {
-        $this->view = new View(__DIR__ . '/../../../templates');                //создаём объект View с путем до templates, чтобы далее можно было подставлять разные шаблоны
+        $this->view = new View(__DIR__ . '/../../../templates');
     }
 
     public function main()
     {
-        $articles = [
-            ['name' => 'Статья 1', 'text' => 'Текст статьи 1'],
-            ['name' => 'Статья 2', 'text' => 'Текст статьи 2'],
-        ];
+        $articles = Article::findAll();
         $this->view->renderHtml('main/main.php', ['articles' => $articles]);
     }
 
-    public function sayHello(string $name)
+    public function about()
     {
-        $title = "Страница приветствия";
-        $this->view->renderHtml('main/hello.php', ['name' => $name, 'title' => 'Страница приветствия']);
+        $this->view->renderHtml('main/about-me.php', []);
     }
-
-    public function sayBye(string $name)
-    {
-        $this->view->renderHtml('main/bye.php', ['name' => $name]);
-    }
-
 }

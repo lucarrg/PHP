@@ -2,8 +2,8 @@
         <td width="300px" class="sidebar">
             <div class="sidebarHeader">Меню</div>
             <ul>
-                <li><a href="/">Главная страница</a></li>
-                <li><a href="/about-me">Обо мне</a></li>
+                <li><a href="/PHP/Module3/www">Главная страница</a></li>
+                <li><a href="/PHP/Module3/www/about-me">Обо мне</a></li>
             </ul>
         </td>
     </tr>

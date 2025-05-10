@@ -1,4 +1,27 @@
 
+.form{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 10px;
+}
+
+.form-label{
+    width: 100%;
+}
+
+.form-input{
+    width: 100%;
+}
+
+.form-button{
+    background-color: darkgreen;
+    color: white;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
 .layout {
 
     width: 100%;
