@@ -3,34 +3,40 @@
     require_once 'menu.php';
 
     //Если параметр 'p' есть в URL, то он будет равен ему. Если его нет, то он по умолчанию будет view
-    $p = $_GET['p'] ?? 'view';
+    $p = $_GET['p'] ?? 'viewer';
 
     echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Записная книжка</title>';
     echo '<link rel="stylesheet" href="style.css"></head><body>';
 
     //Выводим меню
-
-    echo get_menu($p);
+    $sort = $_GET['sort'] ?? 'id';
+    echo get_menu($p, $sort);
 
     //Подключаем соответствующий модуль
     switch ($p) {
         case 'add':
-            require_once 'add.php';
-            show_add_form();
+            include 'add.php';
             break;
         case 'edit':
-            require_once 'edit.php';
+            include 'edit.php';
             show_edit_form();
             break;
         case 'delete':
-            require_once 'delete.php';
+            include 'delete.php';
             show_delete_list();
             break;
         default:
-            require_once 'viewer.php';
-            $sort = $_GET['sort'] ?? 'id';
-            $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-            show_viewer($sort, $page);
+            include 'viewer.php';
+            // если в параметрах не указана текущая страница – выводим самую первую
+            if( !isset($_GET['pg']) || $_GET['pg']<0 ) $_GET['pg']=0;
+
+            // если в параметрах не указан тип сортировки или он недопустим
+            if(!isset($_GET['sort']) || ($_GET['sort']!='id' && $_GET['sort']!='surname' &&
+            $_GET['sort']!='date'))
+            $_GET['sort']='id'; // устанавливаем сортировку по умолчанию
+
+            // формируем контент страницы с помощью функции и выводим его
+            echo getFriendsList($_GET['sort'], $_GET['pg']);
     }
 
     echo '</body></html>';

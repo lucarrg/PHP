@@ -16,7 +16,7 @@ class Comment extends ActiveRecordEntity
 
     protected static function getTableName(): string
     {
-        return `comments`;
+        return 'comments';
     }
 
     public function setText(string $text): void 
@@ -27,6 +27,11 @@ class Comment extends ActiveRecordEntity
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function getArticleId(): int 
+    {
+        return $this->articleId;
     }
 
     public function add(array $commentData, int $articleId): void 

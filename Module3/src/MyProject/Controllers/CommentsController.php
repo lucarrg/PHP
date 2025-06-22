@@ -45,6 +45,8 @@ class CommentsController
         if (!empty($_POST)) {
             try{
                 $comment->edit($_POST);
+                header('Location: /PHP/Module3/www/articles/' . $comment->getArticleId());
+                exit();
             } catch (InvalidArgumentException $e) {
                 $this->view->renderHtml('comments/edit.php', ['comment' => $comment, 'error' => $e->getMessage()]);
                 return;

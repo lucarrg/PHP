@@ -1,8 +1,8 @@
 <?php
 
-function get_menu($active_page = 'view', $active_sort = 'id') {
+function get_menu($active_page = 'viewer', $active_sort = 'id') {
     $menu = [
-        'view' => 'Просмотр',
+        'viewer' => 'Просмотр',
         'add' => 'Добавление записи',
         'delete' => 'Удаление записи',
         'edit' => 'Редактирование записи'
@@ -11,21 +11,21 @@ function get_menu($active_page = 'view', $active_sort = 'id') {
     $html = '<header>';
     foreach ($menu as $key => $value) {
         $class = ($key === $active_page) ? 'select' : '';
-        $html .= "<a href='?p=$key' class='$select'>$value</a>";
+        $html .= "<a href='?p=$key' class='$class'>$value</a>";
     }
     $html .= '</header>';
 
     //Дополнительно меню для выбора сортировки в разделе Просмотр
-    if ($active_page === 'view') {
+    if ($active_page === 'viewer') {
         $sorts = [
             'id' => 'По добавлению',
             'surname' => 'По фамилии',
             'date' => 'По дате рождения'
         ];
-        $html .= "<div class='submenu'";
+        $html .= "<div class='submenu'>";
         foreach ($sorts as $key => $value) {
             $class = ($key === $active_sort) ? 'select' : '';
-            $html .= "<a href='?p=view&sort=$key' class='$class'>$value</a>";
+            $html .= "<a href='?p=viewer&sort=$key' class='$class'>$value</a>";
         }
         $html .= '</div>';
     }
