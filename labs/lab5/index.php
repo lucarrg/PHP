@@ -19,11 +19,9 @@
             break;
         case 'edit':
             include 'edit.php';
-            show_edit_form();
             break;
         case 'delete':
             include 'delete.php';
-            show_delete_list();
             break;
         default:
             include 'viewer.php';

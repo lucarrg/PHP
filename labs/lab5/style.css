@@ -162,6 +162,10 @@ td{
     padding: 3px 0px;
 }
 
+.ok {
+    text-align: center;
+}
+
 .form-btn {
     
     background-color: rgb(92, 103, 168);
@@ -187,5 +191,41 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
+}
+
+.records-list {
+    columns: 3;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.current-record {
+    font-weight: bold;
+    padding: 5px;
+    background: #f0f0f0;
+}
+
+.record-link {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.edit-form {
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.error {
+    color: #d00;
+}
+.success {
+    color: #090;
 }
 
